@@ -4,6 +4,11 @@
 <link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css/styles.css">
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
 
 
 </head>    
@@ -39,7 +44,24 @@
     </div>
 </main>
 <script>
-
+	$("#thumbBox img").on("click", clicker);
+	$("#sliderBox input").on("click", change);
+	
+	function change(){
+		var value = $(this).attr("value");
+		console.log("test");
+	
+	}
+	
+	function clicker(){
+		var src = $(this).attr('src');
+		src = src.replace("small", "medium");
+        $('#imgManipulated img').attr('src',src);
+		
+		var title = $(this).attr('alt');
+		var artist = $(this).attr('title');
+		$('#imgManipulated figcaption').html("<em>" + title + "</em> <br>" + artist);
+	}
 </script>    
 </body>   
 </html>
