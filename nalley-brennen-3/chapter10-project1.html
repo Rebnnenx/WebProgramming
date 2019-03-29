@@ -51,7 +51,9 @@
 		var value = $(this).attr("value");
 		var id = $(this).attr("id");
 		if(id = "sliderOpacity"){
-			$("#imgManipulated img")
+			$("#imgManipulated img").filter: opacity(value%);
+			$("#imgManipulated img").-webkit-filter: opacity(value%)
+			}
 		}
 		if(id = "sliderSaturation")
 		if(id = "sliderBrightness")
@@ -59,6 +61,7 @@
 		if(id = "sliderGray")
 		if(id = "sliderBlur")
 		console.log(id);
+		console.log(value);
 	
 	}
 	
