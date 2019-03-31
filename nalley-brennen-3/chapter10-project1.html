@@ -50,20 +50,34 @@
 	function change(){
 		var value = $(this).attr("value");
 		var id = $(this).attr("id");
-		if(id = "sliderOpacity"){
-			$("#imgManipulated img").filter: opacity(value%);
-			$("#imgManipulated img").-webkit-filter: opacity(value%)
-			}
-		}
-		if(id = "sliderSaturation")
-		if(id = "sliderBrightness")
-		if(id = "sliderHue")
-		if(id = "sliderGray")
-		if(id = "sliderBlur")
-		console.log(id);
-		console.log(value);
+		
+		var gray = 'grayscale(' + sliderGray.value + '%)';
+		var blur = 'blur(' + sliderBlur.value + 'px)';
+		var opacity = 'opacity(' + sliderOpacity.value + '%)';
+		var brightness = 'brightness(' + sliderBrightness.value + '%)';
+		var hue = 'hue-rotate(' + sliderHue.value + 'deg)';
+		var saturation = 'contrast(' + sliderSaturation.value + '%)';
+		$('#imgManipulated img').css({
+			'-webkit-filter': blur + " " + gray + " " + brightness + " " + opacity + " " + hue + " " + saturation,
+			'filter': blur + " " + gray + " " + brightness + " " + opacity + " " + hue + " " + saturation
+		});
+		
+		$("#numOpacity").html(sliderOpacity.value);
+		$("#numSaturation").html(sliderSaturation.value);
+		$("#numBrightness").html(sliderBrightness.value);
+		$("#numHue").html(sliderHue.value);
+		$("#numGray").html(sliderGray.value);
+		$("#numBlur").html(sliderBlur.value);
 	
 	}
+	
+	/*$("#sliderBox resetFilters").on("click", reset);
+	function reset(){
+		$('#imgManipulated img').css({
+			'-webkit-filter': blur(100%) + " " + grayscale(100%) + " " + brightness(100%) + " " + opacity(100%) + " " + hue-rotate(0deg) + " " + saturation(100%)
+			'filter': blur(100%) + " " + grayscale(100%) + " " + brightness(100%) + " " + opacity(100%) + " " + hue-rotate(0deg) + " " + saturation(100%)
+		});	
+	}*/
 	
 	function clicker(){
 		var src = $(this).attr('src');
