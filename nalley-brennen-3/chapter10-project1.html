@@ -44,8 +44,30 @@
     </div>
 </main>
 <script>
+
+	window.onload = function(){
+		var load = (window.name).split(":")
+		if (load[0] != ""){ //make sure that the window still loads an image if none are selected
+		$('figure img').attr('src', load[0]);
+		$('#imgManipulated figcaption').html(load[1]);
+		}
+	}
+
 	$("#thumbBox img").on("click", clicker);
 	$("#sliderBox input").on("click", change);
+	$('#resetFilters').click(function(){
+		window.name = ($('figure img').attr('src') + ":" + $('#imgManipulated figcaption').html());
+	});
+	
+	function clicker(){
+		var src = $(this).attr('src');
+		src = src.replace("small", "medium");
+        $('#imgManipulated img').attr('src',src);
+		
+		var title = $(this).attr('alt');
+		var artist = $(this).attr('title');
+		$('#imgManipulated figcaption').html("<em>" + title + "</em> <br>" + artist);
+	}
 	
 	function change(){
 		var value = $(this).attr("value");
@@ -57,10 +79,11 @@
 		var brightness = 'brightness(' + sliderBrightness.value + '%)';
 		var hue = 'hue-rotate(' + sliderHue.value + 'deg)';
 		var saturation = 'contrast(' + sliderSaturation.value + '%)';
+		
 		$('#imgManipulated img').css({
 			'-webkit-filter': blur + " " + gray + " " + brightness + " " + opacity + " " + hue + " " + saturation,
 			'filter': blur + " " + gray + " " + brightness + " " + opacity + " " + hue + " " + saturation
-		});
+		})
 		
 		$("#numOpacity").html(sliderOpacity.value);
 		$("#numSaturation").html(sliderSaturation.value);
@@ -71,23 +94,9 @@
 	
 	}
 	
-	/*$("#sliderBox resetFilters").on("click", reset);
-	function reset(){
-		$('#imgManipulated img').css({
-			'-webkit-filter': blur(100%) + " " + grayscale(100%) + " " + brightness(100%) + " " + opacity(100%) + " " + hue-rotate(0deg) + " " + saturation(100%)
-			'filter': blur(100%) + " " + grayscale(100%) + " " + brightness(100%) + " " + opacity(100%) + " " + hue-rotate(0deg) + " " + saturation(100%)
-		});	
-	}*/
 	
-	function clicker(){
-		var src = $(this).attr('src');
-		src = src.replace("small", "medium");
-        $('#imgManipulated img').attr('src',src);
-		
-		var title = $(this).attr('alt');
-		var artist = $(this).attr('title');
-		$('#imgManipulated figcaption').html("<em>" + title + "</em> <br>" + artist);
-	}
+	
+	
 </script>    
 </body>   
 </html>
